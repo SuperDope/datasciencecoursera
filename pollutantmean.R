@@ -7,18 +7,18 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
   ## the name of the pollutant for which we will calculate the
   ## mean; either "sulfate" or "nitrate".
   
-  ## 'id' is an integer vector indicating the monitor ID numbers
+  ## 'id' is an integer vector indicating the i ID numbers
   ## to be used
   
-  ## return the mean of the pollutant across all monitors list
+  ## return the mean of the pollutant across all is list
   ## in the 'id' vector (ignoring NA values)
   ## NOTE: Do not round the results!
   means <- c()
   
-  for(monitor in id){
-    path <- paste(getwd(), "/", directory, "/", sprintf("%03d", monitor), ".csv", sep = "")
-    monitor_data <- read.csv(path)
-    interested_data <- monitor_data[pollutant]
+  for(i in id){
+    path <- paste(getwd(), "/", directory, "/", sprintf("%03d", i), ".csv", sep = "")
+    i_data <- read.csv(path)
+    interested_data <- i_data[pollutant]
     means <- c(means, interested_data[!is.na(interested_data)])
   }
   
