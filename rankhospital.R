@@ -29,14 +29,14 @@ rankhospital <- function(state, outcome, num = "best") {
   } else {
     stop("invalid outcome")
   }
-  ## Further subset the data with outcome now
-  outcome_rate[,] <- outcome_db[,colnum]
+  ## First convert the mortality rate of numeric to do ordering
+  outcome_db[, colnum] <- as.numeric(outcome_db[, colnum])
   
-  ## Get the names of the hospital in sorted order with lowest and highest
-  hospitals <- outcome_rate[order(outcome_rate[, colnum], outcome_rate[,2]),]
+  ## Let's order the hospitals per mortality rate
+  hospitals <- outcome_db[order(outcome_db[, colnum], outcome_db[, 2]), ]
   
-  ## Dump the NAs
-  hospitals <- hospitals[(!is.na(hospitals[, colnum])),]
+  ## Remove the NA entries
+  hospitals <- hospitals[(!is.na(hospitals[,colnum])), ]
   
   ## now let's figure out which rank is requested
   if(num == "best") {
